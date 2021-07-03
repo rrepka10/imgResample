@@ -5,6 +5,9 @@
   gcc -g imgResample.c -o imgResample -lm 
   gcc -g imgResample.c -o imgResample -lm -fsanitize=address -fsanitize=undefined
   
+ resample code:
+  https://stackoverflow.com/questions/34622717/bicubic-interpolation-in-c
+  https://pastebin.com/sQDQg7SG
 ----------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
