@@ -416,20 +416,24 @@ PPMImage *resize2(PPMImage *source_image) {
    
    for (y = 0; y < destination_image->y; y++) {
       for (x = 0; x < destination_image->x; x++) {
-         destination_image->data[x+((destination_image->x)*y)].red =   source_image->data[(2*x  +((source_image->x)*2*y))].red/4;
-         destination_image->data[x+((destination_image->x)*y)].red +=  source_image->data[(2*x+1+((source_image->x)*2*y))].red/4;
-         destination_image->data[x+((destination_image->x)*y)].red +=  source_image->data[(2*x  +(((source_image->x))*(2*y+1)))].red/4;
-         destination_image->data[x+((destination_image->x)*y)].red +=  source_image->data[(2*x+1+(((source_image->x))*(2*y+1)))].red/4;
-                                                                       
-         destination_image->data[x+((destination_image->x)*y)].green = source_image->data[(2*x  +((source_image->x)*2*y))].green/4;
-         destination_image->data[x+((destination_image->x)*y)].green +=source_image->data[(2*x+1+((source_image->x)*2*y))].green/4;
-         destination_image->data[x+((destination_image->x)*y)].green +=source_image->data[(2*x  +(((source_image->x))*(2*y+1)))].green/4;
-         destination_image->data[x+((destination_image->x)*y)].green +=source_image->data[(2*x+1+(((source_image->x))*(2*y+1)))].green/4;
-                                                                       
-         destination_image->data[x+((destination_image->x)*y)].blue =  source_image->data[(2*x  +((source_image->x)*2*y))].blue/4;
-         destination_image->data[x+((destination_image->x)*y)].blue += source_image->data[(2*x+1+((source_image->x)*2*y))].blue/4;
-         destination_image->data[x+((destination_image->x)*y)].blue += source_image->data[(2*x  +(((source_image->x))*(2*y+1)))].blue/4;
-         destination_image->data[x+((destination_image->x)*y)].blue += source_image->data[(2*x+1+(((source_image->x))*(2*y+1)))].blue/4;
+         destination_image->data[x+((destination_image->x)*y)].red = (int)(
+				source_image->data[(2*x  +((source_image->x)*2*y))].red
+				+ source_image->data[(2*x+1+((source_image->x)*2*y))].red
+				+ source_image->data[(2*x  +(((source_image->x))*(2*y+1)))].red
+				+ source_image->data[(2*x+1+(((source_image->x))*(2*y+1)))].red
+				)/4;
+         destination_image->data[x+((destination_image->x)*y)].blue = (int)(
+				source_image->data[(2*x  +((source_image->x)*2*y))].blue
+				+ source_image->data[(2*x+1+((source_image->x)*2*y))].blue
+				+ source_image->data[(2*x  +(((source_image->x))*(2*y+1)))].blue
+				+ source_image->data[(2*x+1+(((source_image->x))*(2*y+1)))].blue
+				)/4;
+         destination_image->data[x+((destination_image->x)*y)].green = (int)(
+				source_image->data[(2*x  +((source_image->x)*2*y))].green
+				+ source_image->data[(2*x+1+((source_image->x)*2*y))].green
+				+ source_image->data[(2*x  +(((source_image->x))*(2*y+1)))].green
+				+ source_image->data[(2*x+1+(((source_image->x))*(2*y+1)))].green
+				)/4;
       } // End y
    } // End x
    
